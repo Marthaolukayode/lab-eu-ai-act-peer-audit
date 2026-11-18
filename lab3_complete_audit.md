@@ -171,39 +171,108 @@ This educational review is **not a legal opinion, conformity assessment or certi
 
 ## 1. Auditor presents
 
-My audit classified the AI Search Visibility Agent as **minimal risk** for its stated internal SEO/GEO use, with a recommendation to **proceed with conditions**. The main findings were undocumented retention and privacy controls, limitations in source-data validation, delivery of reports marked *unchecked* when the fact-checker fails, and missing AI-generated-content labelling.
+My audit classified the AI Search Visibility Agent as **minimal risk** for its stated internal SEO/GEO use, with a recommendation to **proceed with conditions**.
+
+The four main findings were:
+
+1. **GDPR governance and retention:** Undocumented retention arrangements and insufficiently defined privacy and vendor controls.
+2. **Source verification:** Limitations in independently validating the original source data used by the agent.
+3. **Unchecked report delivery:** Reports marked *unchecked* are still delivered when the fact-checker fails.
+4. **AI transparency:** Missing AI-generated-content labelling and the need to assess potentially applicable transparency obligations.
+
+I presented these findings to Barsha during our peer-audit debrief.
 
 ## 2. Builder responds
 
-Barsha explained in her written clarifications that the reports are intended for internal marketing use; n8n uses default execution logging without a written retention policy; and LangGraph checks generated claims against retrieved rankings and calculated scores, but does not independently validate the original source data. If the fact-checker is unavailable, the report is still delivered with an *unchecked* warning.
+During our live discussion and subsequent written clarifications, Barsha explained that the reports are intended for internal marketing use; n8n uses default execution logging without a written retention policy; and LangGraph checks generated claims against retrieved rankings and calculated scores, but does not independently validate the original source data.
 
-**Debrief follow-up:** Add any further response Barsha gave during the live discussion; the written clarifications above do not establish that a five-minute response took place.
+If the fact-checker is unavailable, the report is still delivered with an *unchecked* warning.
+
+Barsha also shared the four gaps identified in her original self-audit:
+
+1. **AI-generated-content labelling:** Neither the report nor the email clearly identifies the content as AI-generated. She flagged a possible Article 50(2) transparency duty for legal review.
+2. **Reader-facing limitations:** Important limitations, including API-versus-ChatGPT differences, name-based matching and one-day snapshots, are documented in the README but not communicated directly to report readers.
+3. **Misleading comparative claims:** Competitor comparisons could create misleading-advertising risks under German UWG rules if clients reuse the findings publicly without human review.
+4. **GDPR governance:** No privacy notice, undefined retention, a personal Gmail sender, and potential personal-data transfers to US vendors.
+
+Barsha clarified that she had already recognised the fact-checker's dependence on collected source data but had treated it as a limitation rather than a separate reliability risk.
+
+She had also regarded the unchecked-report fallback as a robustness feature, whereas my independent audit highlighted the risk of distributing unverified findings.
+
+We discussed these differences and the value of adding safeguards, including human review and stronger verification before report delivery.
 
 ## 3. Compare classifications
 
 | Review | Risk tier | Reason |
 |---|---|---|
 | My independent audit of Barsha's agent | **Minimal risk (provisional)** | Internal marketing recommendations; no prohibited Article 5 practice or Annex III high-risk intended purpose identified. |
-| Barsha's self-audit of her own agent | **Not supplied** | Confirm directly with Barsha before recording agreement or disagreement. |
+| Barsha's self-audit of her own agent | **Minimal risk, with a possible Article 50(2) transparency duty** | The system evaluates brand search visibility rather than individuals and does not operate in an Annex III high-risk area. |
 
-The risk-tier comparison remains open until Barsha shares her own classification. A disagreement should be recorded with the reason, rather than assumed.
+**Agreement:** Both assessments classified the AI Search Visibility Agent as minimal risk.
+
+Barsha explained that the system does not involve prohibited practices such as manipulation, social scoring or prohibited biometric uses. It also does not make employment, education, credit or other Annex III high-risk decisions about individuals.
+
+The main difference was our interpretation of AI transparency.
+
+Barsha identified Article 50(2) as a possible legal obligation concerning machine-readable marking of AI-generated content. My audit identified missing AI transparency but did not assume that Article 50 automatically applied to the internal marketing reports.
+
+We agreed that the applicability of Article 50 should be reviewed and that the reports should be clearly labelled as AI-generated.
+
+**Conclusion:** We agreed on the risk classification. The possible Article 50 obligation is a separate transparency question rather than an additional risk tier.
 
 ## 4. Compare gap lists
 
-**My external audit identified:** unclear retention and privacy governance; limited independent verification of source data; delivery of unchecked reports on fact-checker failure; and absent AI labelling.
+We compared the four findings from my independent audit with the four main gaps identified in Barsha's self-audit.
 
-**What our exchange established:** Barsha's external audit of *my* Interview Preparation Agent identified the possibility of uploading someone else's CV, while my own testing had already revealed fabricated STAR metrics. In turn, my external audit of *her* agent identified the unchecked-report fallback, while Barsha understood the fact-checker's implementation details.
+| Compliance issue | Barsha's self-audit | My independent audit | Comparison |
+|---|---|---|---|
+| GDPR governance and retention | Identified missing privacy notice, personal Gmail sender, undefined retention and vendor-transfer concerns | Identified insufficient privacy governance, vendor safeguards and retention controls | **Agreed** |
+| AI transparency | Identified missing AI-generated labels and possible Article 50(2) duty | Identified missing AI labelling and the need to assess transparency obligations | **Agreed on action** |
+| Source verification | Documented that the fact-checker relies on collected data | Identified the absence of independent source verification as a reliability risk | **Partially overlapping** |
+| Unchecked report delivery | Treated sending reports with an unchecked warning as a robustness feature | Identified continued delivery after fact-checking failure as a risk | **Identified by auditor** |
+| Misleading comparative claims | Identified possible misleading-advertising risks under German UWG rules | Not separately identified | **Identified by builder** |
+| Reader-facing limitations | Identified that limitations were documented in the README but not disclosed to report recipients | Not separately identified | **Identified by builder** |
 
-**Still to confirm:** Barsha's formal self-audit gap list for her own agent, so the complete self-audit-versus-peer-audit comparison can be recorded accurately.
+### Findings we both identified
+
+We agreed on GDPR governance and retention concerns, as well as the need for clearer AI transparency.
+
+### Findings I identified that Barsha had not fully recognised as risks
+
+**Unchecked report delivery:** The workflow continues sending reports when fact-checking fails. Barsha had originally treated this as a robustness feature, while my audit identified the potential risk of distributing unverified information.
+
+**Source verification:** Barsha had documented the limitation, but my audit more explicitly assessed it as a reliability risk because the fact-checker cannot independently confirm the accuracy of the original source data.
+
+### Findings Barsha identified that I had not separately flagged
+
+**Misleading comparative claims:** Competitor comparisons could create misleading-advertising risks if the findings are reused publicly without adequate review.
+
+**Reader-facing limitations:** Report recipients are not directly informed about important system limitations, even though these are documented in the README.
+
+### Differences in interpretation and severity
+
+**AI transparency:** Barsha raised Article 50(2) as a possible legal obligation, while I treated its applicability as requiring further assessment. We agreed that legal review and clear AI-generated-content labelling were appropriate.
+
+**Human review:** Barsha proposed an optional review-before-send step for client reports. I focused on preventing unchecked reports from being delivered when verification fails. These recommendations complement each other.
+
+**Overall severity:** Both assessments recommended **Proceed with conditions**, with no findings classified as blocking.
 
 ## 5. Joint closing note
 
-> Auditing our own systems, we both knew the details best. Martha knew her model had invented metrics in testing, and Barsha knew exactly how her fact-checker worked. But we also both took our intended use for granted. The external audits found what we had missed: Barsha spotted that anyone could upload someone else’s CV, and Martha spotted that Barsha’s agent still sends unchecked reports when the fact-checker fails. Self-audits are strong on facts, peer audits are strong on assumptions, and a good compliance review needs both.
+Our peer audit showed that assessing our own systems and reviewing someone else's system can reveal different risks. Barsha's self-audit highlighted AI transparency, reader-facing limitations and misleading comparative claims, while my independent audit identified additional risks involving source verification and unchecked report delivery. Together, these findings showed the value of combining technical knowledge with an independent review to identify compliance gaps and strengthen safeguards before deployment.
 
-*Draft proposed by Barsha and explicitly accepted by Martha. The wording above is preserved as agreed; it is longer than the requested 2–3 sentences.*
+*Joint closing note reviewed and agreed upon by both peer-audit partners.*
 
-**Short 3-sentence version for the lab requirement:**
+## 6. Debrief outcome
 
-> Auditing our own systems helped us understand technical details, including invented interview metrics and how the fact-checker operates, but also made it easy to take our intended use for granted. The peer audits uncovered overlooked assumptions: another person's CV could be uploaded to the interview agent, and the visibility agent could still send an unchecked report when verification failed. Together, the reviews showed that self-audits are strong on implementation details, while peer audits challenge assumptions and expose blind spots.
+**Format:** Live peer-audit meeting, supported by written follow-up exchanges on 16–18 November 2026.
 
-*The shortened version is an editorial adaptation, not separately confirmed by Barsha. Use the original agreed wording unless both partners approve the shorter version.*
+**Final risk classification:** Minimal risk (provisional).
+
+**Overall recommendation:** Proceed with conditions.
+
+**Blocking findings:** None identified.
+
+**Outstanding legal question:** Whether Article 50 transparency obligations apply to the system's outputs and the relevant provider or deployer.
+
+The debrief covered the auditor's findings, the builder's response, the comparison of risk classifications, the comparison of compliance gaps and the joint conclusion.
